@@ -1,13 +1,12 @@
 {pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/audio.nix
-    ../../modules/virt.nix
-    ../../modules/network.nix
+    ../../modules/base.nix
     ../../modules/desktop.nix
-    ../../modules/gaming.nix
+    ../../modules/dev.nix
     ../../modules/env.nix
-    ../../modules/bluetooth.nix
+    ../../modules/gaming.nix
+    ../../modules/virt.nix
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -31,7 +30,6 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
-  users.defaultUserShell = pkgs.zsh;
   users.users.michael = {
     isNormalUser = true;
     description = "michael";
@@ -41,15 +39,6 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs;
-    [
-    ]
-    ++ (import ./../../modules/packages.nix pkgs);
-
-  programs.zsh = {
-    enable = true;
-    autosuggestions.enable = true;
-  };
 
   system.stateVersion = "24.05";
 }

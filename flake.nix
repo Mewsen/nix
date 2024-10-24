@@ -4,7 +4,6 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
-
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
     };
@@ -38,14 +37,6 @@
           }: {nixpkgs.overlays = [overlay-unstable];})
         ];
       };
-
-      #		  workstation = nixpkgs.lib.nixosSystem {
-      #			  specialArgs = {inherit inputs;};
-      #			  modules = [
-      #			  	./device/workstation/configuration.nix
-      #			  ];
-      #		  };
-      #
     };
   };
 }
