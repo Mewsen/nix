@@ -1,11 +1,9 @@
-{pkgs, ...}:
-{
+{ pkgs, ... }: {
   # Keyboard layout
-  console =
-    {
-      useXkbConfig = true;
-      earlySetup = true;
-    };
+  console = {
+    useXkbConfig = true;
+    earlySetup = true;
+  };
 
   services.xserver = {
     xkb.layout = "intlde";
@@ -14,8 +12,10 @@
       description = "English (US, intl., German Umlaut)";
       languages = [ "en" "de" ];
       symbolsFile = builtins.fetchurl {
-        url = "https://raw.githubusercontent.com/rgeber/xkb-layout-us-intl-de/f3c24c3d8a3c06d96f95ee263884269969001da2/intlde";
-        sha256 = "c2ef333f382ca735bcdd67181a9e5ba348a87b219ca105487e6c9616dbca46bf";
+        url =
+          "https://raw.githubusercontent.com/rgeber/xkb-layout-us-intl-de/f3c24c3d8a3c06d96f95ee263884269969001da2/intlde";
+        sha256 =
+          "c2ef333f382ca735bcdd67181a9e5ba348a87b219ca105487e6c9616dbca46bf";
       };
     };
   };
@@ -25,7 +25,7 @@
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-};
+  };
 
   services.usbmuxd = {
     enable = true;
@@ -33,7 +33,8 @@
   };
 
   hardware.bluetooth.enable = true; # enables support for Bluetooth
-  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  hardware.bluetooth.powerOnBoot =
+    true; # powers up the default Bluetooth controller on boot
 
   # Networking
   networking.hostName = "nixos";
@@ -46,11 +47,12 @@
 
   # Fonts 
   fonts.packages = with pkgs; [
+    cozette
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
     liberation_ttf
-    (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})
+    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
     mplus-outline-fonts.githubRelease
     dina-font
     proggyfonts
@@ -82,6 +84,14 @@
     # For setting XDG Directories
     xdg-user-dirs
 
+    aspell
+    aspellDicts.en
+    aspellDicts.en-computers
+    aspellDicts.en-science
+    aspellDicts.de
+
+    aichat
+
     gnupg
     ripgrep
     wget
@@ -100,6 +110,11 @@
 
     # For drawing images over a Terminal
     ueberzugpp
+
+    nil
+    nixfmt-classic
   ];
+
+  programs.direnv.enable = true;
 
 }

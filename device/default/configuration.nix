@@ -1,15 +1,14 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   imports = [
     ./hardware-configuration.nix
     ../../modules/base.nix
     ../../modules/desktop.nix
-    ../../modules/dev.nix
     ../../modules/env.nix
     ../../modules/gaming.nix
     ../../modules/virt.nix
   ];
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # automount usb
   services.devmon.enable = true;
@@ -34,11 +33,10 @@
     isNormalUser = true;
     description = "michael";
     shell = pkgs.zsh;
-    extraGroups = ["networkmanager" "wheel" "docker"];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 
   nixpkgs.config.allowUnfree = true;
-
 
   system.stateVersion = "24.05";
 }

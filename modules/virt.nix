@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   virtualisation.libvirtd.enable = true;
   virtualisation.docker.enable = true;
   virtualisation.docker.rootless = {
@@ -6,8 +6,5 @@
     setSocketVariable = true;
   };
 
-  environment.systemPackages = with pkgs; [
-    virt-manager
-    docker-compose
-  ];
+  environment.systemPackages = with pkgs; [ virt-manager docker-compose ];
 }
