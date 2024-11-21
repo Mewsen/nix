@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+    nixdevsh.url = "github:mewsen/nixdevsh/master";
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
     };
@@ -14,6 +15,7 @@
     nixpkgs,
     nixpkgs-unstable,
     nixos-hardware,
+    nixdevsh,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -23,7 +25,7 @@
         config.allowUnfree = true;
       };
     };
-    supportedSystems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
+    supportedSystems = [ "x86_64-linux" "aarch64-linux"];
     forEachSupportedSystem = f: nixpkgs.lib.genAttrs supportedSystems (system: f {
       pkgs = import nixpkgs { inherit system; };
     });

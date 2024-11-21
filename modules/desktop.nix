@@ -58,9 +58,8 @@ in {
     spotify
     libva-utils
     vesktop
-    qbittorrent
     obsidian
-    unstable.vscode
+    vscode-fhs
     halloy
     ventoy-full
     unstable.zed-editor
@@ -79,6 +78,8 @@ in {
     filezilla
     chromium
     unstable.davinci-resolve
+    gnucash
+    p7zip
   ];
 
   hardware.pulseaudio.enable = false;

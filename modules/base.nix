@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
   # Keyboard layout
   console = {
     useXkbConfig = true;
@@ -41,13 +41,17 @@
 
   networking.networkmanager.enable = true;
 
-  networking.firewall.enable = true;
-  # networking.firewall.allowedTCPPorts = [...];
-  # networking.firewall.allowedUDPPorts = [...];
+  #networking.firewall.enable = true;
+  #networking.firewall.allowedTCPPorts = [ 3000 8080 8000 ];
+  #networking.firewall.allowedUDPPorts = [ ];
 
   # Fonts 
+
+  fonts.fontconfig.allowBitmaps = true;
+
   fonts.packages = with pkgs; [
     cozette
+    scientifica
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
@@ -91,6 +95,7 @@
     aspellDicts.de
 
     aichat
+    bat
 
     gnupg
     ripgrep
@@ -103,16 +108,28 @@
     btop
 
     tldr
+    cht-sh
 
     lm_sensors
     usbutils
     pciutils
 
+    asciinema
+
+    inputs.nixdevsh.packages.x86_64-linux.default
+
     # For drawing images over a Terminal
     ueberzugpp
 
+    zellij
+
+    ollama
+
     nil
     nixfmt-classic
+
+    # PDF utils
+    poppler_utils
   ];
 
   programs.direnv.enable = true;
