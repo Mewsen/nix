@@ -1,4 +1,5 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, nixdevsh, ... }: {
+
   # Keyboard layout
   console = {
     useXkbConfig = true;
@@ -41,9 +42,9 @@
 
   networking.networkmanager.enable = true;
 
-  #networking.firewall.enable = true;
-  #networking.firewall.allowedTCPPorts = [ 3000 8080 8000 ];
-  #networking.firewall.allowedUDPPorts = [ ];
+  networking.firewall.enable = true;
+  networking.firewall.allowedTCPPorts = [ 3000 8080 8000 ];
+  networking.firewall.allowedUDPPorts = [ ];
 
   # Fonts 
 
@@ -75,9 +76,12 @@
 
   users.defaultUserShell = pkgs.zsh;
   environment.systemPackages = with pkgs; [
+    home-manager
+
     zsh
     zsh-autosuggestions
     zsh-syntax-highlighting
+    unstable.pure-prompt
 
     unstable.neovim
     git
@@ -116,7 +120,7 @@
 
     asciinema
 
-    inputs.nixdevsh.packages.x86_64-linux.default
+    nixdevsh.packages.x86_64-linux.default
 
     # For drawing images over a Terminal
     ueberzugpp
@@ -125,7 +129,15 @@
 
     ollama
 
-    nil
+    ltex-ls
+    unstable.typescript-language-server
+    vscode-langservers-extracted
+    lua-language-server
+    fd
+    ripgrep
+    gcc
+
+    nixd
     nixfmt-classic
 
     # PDF utils
